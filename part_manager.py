@@ -1,10 +1,16 @@
 from tkinter import *
+from db import Database
+
+db = Database('store.db')
 
 def populate_list():
-    print('Populate')
+    parts_list.delete(0, END)
+    for now in db.fetch():
+        parts_list.insert(END, row)
 
 def add_item():
-    print('Add')
+    db.insert(part_text.get(), customer.get(), retailer.get(), price.get())
+    parts_list.delete(0, END)
 
 def remove_item():
     print('Remove')
@@ -75,6 +81,7 @@ app.title('Part Manager')
 app.geometry('700x350')
 
 # Populate data
+populate_list()
 populate_list()
 
 
